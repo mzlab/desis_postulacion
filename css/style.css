@@ -1,0 +1,32 @@
+.form-general {
+    justify-content: center;
+    margin-top: 10%;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-bottom: 10%;
+    padding: 1%;
+    border: 1px solid #000000;
+    border-radius: 8px;
+}
+
+.form-general h2{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.form-row label {
+    flex-basis: 30%;
+    margin-right: 10px;
+}
+
+.form-row input,
+.form-row select {
+    flex-grow: 1;
+}
+
