@@ -11,6 +11,7 @@ select_region.addEventListener('change', function() {
     fetch('app/comuna.php')
         .then(response => response.json())
         .then(data => {
+            select_comuna.innerHTML = '';
             // Recorrer los datos y crear las opciones para el select de comunas
             data.forEach(item => {
                 if (select_region_cv == item['id_re']) {
