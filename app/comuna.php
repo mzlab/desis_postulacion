@@ -4,6 +4,6 @@
     $query = "SELECT id_co, id_re, str_descripcion FROM comuna";
     $lista_comunas = listAll($query);
 
-    //Devuelve todos las comunas en formato JSON
+    //Devuelve todas las comunas en formato JSON
     echo $lista_comunas;
 ?>

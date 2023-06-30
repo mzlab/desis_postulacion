@@ -8,21 +8,22 @@
     <body>
         <form id="vote_form" class="form-general">
             <h2><b>FORMULARIO DE VOTACIÓN:</b></h2>
+            <div id="error" class="form-row"></div>
             <div class="form-row">
                 <label for="nombre_completo">Nombre y Apellido:</label>
-                <input id="nombre_completo" type="text" required>
+                <input id="nombre_completo" type="text" placeholder="John Doe" required>
             </div>
             <div class="form-row">
                 <label for="alias">Alias:</label>
-                <input id="alias" type="text" required>
+                <input id="alias" type="text" placeholder="Myalias64" required>
             </div>
             <div class="form-row">
                 <label for="rut">RUT:</label>
-                <input id="rut" type="text" required>
+                <input id="rut" type="text" placeholder="11111111-1" required>
             </div>
             <div class="form-row">
                 <label for="email">Email:</label>
-                <input id="email" type="email" required>
+                <input id="email" type="email" placeholder="jd@example.com" required>
             </div>
             <div class="form-row">
                 <label for="region">Región:</label>
@@ -33,18 +34,18 @@
                 <select id="comuna" required></select>
             </div>
             <div class="form-row">
-                <label for="candidato">Candidato:</label>
+                <label for="candidato">Candidato/a:</label>
                 <select id="candidato" required></select>
             </div>
             <div class="form-row">
                 <label>Cómo se enteró de Nosotros:</label>
-                <input id="web" type="checkbox" name="web" value="Web">
+                <input id="web" type="checkbox" name="choice" value="Web">
                 <label for="web">Web</label>
-                <input id="tv" type="checkbox" value="TV">
+                <input id="tv" type="checkbox" name="choice" value="TV">
                 <label for="tv">TV</label>
-                <input id="rrss" type="checkbox" value="Redes Sociales">
+                <input id="rrss" type="checkbox" name="choice" value="Redes Sociales">
                 <label for="rrss">Redes Sociales</label>
-                <input id="amigo" type="checkbox" value="Amigo">
+                <input id="amigo" type="checkbox" name="choice" value="Amigo">
                 <label for="amigo">Amigo</label>
             </div>
             <div class="form-row">  

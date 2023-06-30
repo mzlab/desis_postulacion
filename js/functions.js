@@ -20,3 +20,89 @@ function fetchAndPopulateSelect(url, select, valueKey, textKey) {
         })
         .catch(error => console.log(error));
 }
+
+
+//Función que contiene todas las validaciones personalizadas del formulario
+function validarFormulario() {
+    const checkboxes = document.querySelectorAll('input[name="choice"]:checked');
+    const errorContainer = document.getElementById("error");
+    const alias = document.getElementById("alias");
+    const rut = document.getElementById("rut");
+    const regex = /^(?=.*[a-zA-Z])(?=.*\d).+$/; //Expresión regular para verificar si un string contiene letrs y números
+    let isValid = true; // Variable para verificar la validez de todas las validaciones
+
+    // Valida que se seleccionen al menos 2 opciones en el checkbox
+    if (checkboxes.length < 2) {
+        isValid = false; 
+        errorContainer.appendChild(crearMensajeError("Debes seleccionar al menos dos opciones.", 'checkbox'));
+    } else {
+        eliminarMensajeError('checkbox');
+    } 
+
+    // Valida alias a través de una expresión regular
+    if (!regex.test(alias.value)) {
+        isValid = false; 
+        errorContainer.appendChild(crearMensajeError("La cantidad de caracteres debe ser mayor a 5 y debe contener letras y números.", alias.id));
+        alias.classList.add('error-input');
+    } else {
+        alias.classList.remove('error-input');
+        eliminarMensajeError(alias.id);
+    } 
+
+    //Valida rut
+    if (!validaRut(rut.value)) {
+        isValid = false; 
+        errorContainer.appendChild(crearMensajeError("Rut no válido, use el formato indicado.", rut.id));
+        rut.classList.add('error-input');
+    } else {
+        rut.classList.remove('error-input');
+        eliminarMensajeError(rut.id);
+    }
+    
+
+    return isValid;
+}   
+
+function crearMensajeError(mensaje, refElemId){
+    const idError = refElemId + "_error";
+    const existe = document.getElementById(idError);
+
+    if (!existe) {
+        const mensajeError = document.createElement("div");
+        mensajeError.innerHTML = mensaje;
+        mensajeError.classList.add('error-style');
+        mensajeError.id = idError;
+        return mensajeError;
+    }
+    return existe;
+}
+
+function eliminarMensajeError(id){
+    const idError = id + "_error";
+    const elemento = document.getElementById(idError);
+    if (elemento) {
+        elemento.remove();
+    }
+}
+
+
+function validaRut(rutCompleto) {
+    // Valida el rut con su cadena completa "XXXXXXXX-X"
+    rutCompleto = rutCompleto.replace("‐","-");
+    if (!/^[0-9]+[-|‐]{1}[0-9kK]{1}$/.test( rutCompleto ))
+        return false;
+    var tmp 	= rutCompleto.split('-');
+    var digv	= tmp[1]; 
+    var rut 	= tmp[0];
+    if ( digv == 'K' ) digv = 'k' ;
+    
+    return (dv(rut) == digv );
+}
+
+function dv(T){
+    var M=0,S=1;
+    for(;T;T=Math.floor(T/10))
+        S=(S+T%10*(9-M++%6))%11;
+
+    return S?S-1:'k';
+}

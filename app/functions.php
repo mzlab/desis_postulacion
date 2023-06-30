@@ -1,6 +1,7 @@
 <?php
     require_once "../database/db_connection.php";
 
+    //Recibe una query y devuelve todos los datos en formato JSON
     function listAll($query) {
         try {
             $conn = obtenerConexion(); // Obtener la conexión desde db_connection.php
