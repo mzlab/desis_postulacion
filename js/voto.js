@@ -4,9 +4,9 @@ const form = document.getElementById('vote_form');
 form.addEventListener('submit', (e) => { 
     e.preventDefault();
 
-    //Si el formulario fue correctamente validado
+    /* Si el formulario fue correctamente validado, se envían los datos en formato JSON 
+       para ser posteriormente procesados. */
     if (validarFormulario()) {
-
         const nombre = document.getElementById("nombre_completo").value;
         const alias = document.getElementById("alias").value;
         const rut = document.getElementById("rut").value;
@@ -43,7 +43,7 @@ form.addEventListener('submit', (e) => {
             console.log(error);
           });
         
-        // form.submit();
+        form.submit();
     }   
 });
 

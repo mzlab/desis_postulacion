@@ -17,6 +17,8 @@
 
     try {
         $conn = obtenerConexion(); // Obtener la conexión desde db_connection.php
+
+        //Consulta preparada 
         $stmt = $conn->prepare('INSERT INTO voto (nombre_completo, alias, rut, email, id_re, id_co, id_candidato) VALUES (?, ?, ?, ?, ?, ?, ?)');
         $stmt->bindParam(1, $nombre);
         $stmt->bindParam(2, $alias);
@@ -25,15 +27,20 @@
         $stmt->bindParam(5, $regionId);
         $stmt->bindParam(6, $comunaId);
         $stmt->bindParam(7, $candidatoId);
+
+        //Inserción de datos
         $stmt->execute();
     
         $idVoto = $conn->lastInsertId(); // Obtener el ID del voto insertado
     
-        // Guardar las opciones seleccionadas en la tabla de relación 'referencia'
+        // Guardar las opciones seleccionadas en la tabla de relación 'voto_fuente_ref'
         foreach ($referencia as $opcionId) {
+            //Consulta preparada 
             $stmt = $conn->prepare('INSERT INTO voto_fuente_ref (id_voto, id_fuente_ref) VALUES (?, ?)');
             $stmt->bindParam(1, $idVoto);
             $stmt->bindParam(2, $opcionId);
+
+            //Inserción de datos
             $stmt->execute();
         }
     
