@@ -14,6 +14,8 @@ function validarFormulario() {
     
     let isValid = false; // Variable para verificar la validez de todas las validaciones
 
+    /* Valida cada uno de los campos, la variable isValid para siendo false y solo retornará true si todos
+       las validaciones son verdaderas */
     isValid = validarCampo(nombre, errorContainer);
     isValid = validarAlias(alias, errorContainer) && isValid;
     isValid = validarEmail(email, errorContainer) && isValid;
