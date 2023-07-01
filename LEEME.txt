@@ -1,0 +1,23 @@
+Version PHP: 8.1.10
+Versión del servidor: 10.4.25-MariaDB
+
+Para instalar este proyecto, hay que seguir los siguientes pasos:
+
+Requisitos previos:
+- Tener PHP instalado
+- Tener un servidor web configurado (puede ser XAMPP o similar)
+
+1.- Clonar o descargar el repositorio desde GitHub
+2.- Configurar la conexión a la base de datos del proyecto en database/db_connection.php
+3.- Cargar la base de datos desde SQL/votación.sql
+4.- Ubicar proyecto en la raiz del servidor web
+5.- Acceder a través de un navegador web a la ubicación del proyecto:
+
+Si es local: localhost/nombre_proyecto 
+si está en la raiz y local: localhost/
+
+*si se utiliza otro puerto hay que agregarlo a la dirección (ej: localhost:8080/)
+
+
+
+
