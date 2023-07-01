@@ -43,7 +43,7 @@ form.addEventListener('submit', (e) => {
             console.log(error);
           });
         
-        form.submit();
+        // form.submit();
     }   
 });
 
