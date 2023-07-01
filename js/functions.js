@@ -51,8 +51,18 @@ function validarFormulario() {
 
     //Valida rut
     if (!validaRut(rut.value)) {
+        console.log(validaRut(rut.value));
         isValid = false; 
         errorContainer.appendChild(crearMensajeError("Rut no válido, use el formato indicado.", rut.id));
+        rut.classList.add('error-input');
+    } else {
+        rut.classList.remove('error-input');
+        eliminarMensajeError(rut.id);
+    }
+
+    //Valida si el rut está duplicado en la base de datos
+    if(rutDuplicado(rut.value)){
+        errorContainer.appendChild(crearMensajeError("Sólo puedes votar 1 vez", rut.id));
         rut.classList.add('error-input');
     } else {
         rut.classList.remove('error-input');
@@ -90,6 +100,19 @@ function eliminarMensajeError(refElemId){
     if (elemento) {
         elemento.remove();
     }
+}
+
+function rutDuplicado(vRut) {
+    return fetch('app/rut.php')
+        .then(response => response.json())
+        .then(data => {
+            // Recorrer los datos y validar si el rut está duplicado
+            return data.some(rut => rut === vRut);
+        })
+        .catch(error => {
+            console.log(error);
+            return false;
+        });
 }
 
 // Valida el rut con su cadena completa "XXXXXXXX-X"
