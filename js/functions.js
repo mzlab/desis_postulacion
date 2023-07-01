@@ -28,7 +28,7 @@ function validarFormulario() {
     const errorContainer = document.getElementById("error");
     const alias = document.getElementById("alias");
     const rut = document.getElementById("rut");
-    const regex = /^(?=.*[a-zA-Z])(?=.*\d).+$/; //Expresión regular para verificar si un string contiene letrs y números
+    const regex = /^(?=.*[a-zA-Z])(?=.*\d).+$/; //Expresión regular para verificar si un string contiene letras y números
     let isValid = true; // Variable para verificar la validez de todas las validaciones
 
     // Valida que se seleccionen al menos 2 opciones en el checkbox
@@ -63,6 +63,10 @@ function validarFormulario() {
     return isValid;
 }   
 
+/* Crea un mensaje de error y lo muestra al principio del formulario
+    mensaje : string con el mensaje a mostrar
+    refElemId : id del componente asociado al error
+*/
 function crearMensajeError(mensaje, refElemId){
     const idError = refElemId + "_error";
     const existe = document.getElementById(idError);
@@ -77,17 +81,19 @@ function crearMensajeError(mensaje, refElemId){
     return existe;
 }
 
-function eliminarMensajeError(id){
-    const idError = id + "_error";
+/* Elimina un mensaje de error según el ID de su elemento referencia
+    refElemId : id del componente asociado al error
+*/
+function eliminarMensajeError(refElemId){
+    const idError = refElemId + "_error";
     const elemento = document.getElementById(idError);
     if (elemento) {
         elemento.remove();
     }
 }
 
-
+// Valida el rut con su cadena completa "XXXXXXXX-X"
 function validaRut(rutCompleto) {
-    // Valida el rut con su cadena completa "XXXXXXXX-X"
     rutCompleto = rutCompleto.replace("‐","-");
     if (!/^[0-9]+[-|‐]{1}[0-9kK]{1}$/.test( rutCompleto ))
         return false;
